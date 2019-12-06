@@ -27,7 +27,7 @@ log.info("Start application")
 
 # RABBIT MQ PRODUCER-CONSUMER SETTINGS
 host = os.environ['HOST']
-poer = os.environ['PORT']
+port = os.environ['PORT']
 producer_config = make_config(host, "MYW", "guest", "guest")
 consumer_config = make_config(host, "GLADVALAKAS", "guest", "guest")
 producer = RMQProducer(producer_config)

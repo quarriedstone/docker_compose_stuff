@@ -6,13 +6,13 @@ import redis
 IP="0.0.0.0"
 PORT=8000
 
-
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         self.send_response(HTTPStatus.OK)
         self.end_headers()
         r.incr("counter")
-        self.wfile.write(b'Hello world\n Number of visitors: ' + r.get("counter") + "\n")
+        i = r.get("counter").decode("utf-8")
+        self.wfile.write(f'Hello world\n Number of visitors: {i}\n'.encode('utf-8'))
 
 r = redis.Redis()
 httpd = socketserver.TCPServer((IP, PORT), Handler)
